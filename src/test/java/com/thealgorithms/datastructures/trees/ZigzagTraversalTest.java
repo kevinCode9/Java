@@ -22,9 +22,33 @@ public class ZigzagTraversalTest {
         assertEquals(List.of(List.of(50)), ZigzagTraversal.traverse(root));
     }
 
+    /*
+         1
+        / \
+       2   3
+      /\   /\
+     4  5 6  7
+    */
     @Test
-    public void testZigzagTraversal() {
-        final BinaryTree.Node root = TreeTestUtils.createTree(new Integer[]{7, 6, 14, 2, 80, 100});
-        assertEquals(List.of(List.of(7), List.of(14, 6), List.of(2, 80, 100)), ZigzagTraversal.traverse(root));
+    public void testZigzagTraversalCompleteTree() {
+        final BinaryTree.Node root = TreeTestUtils.createTree(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+        assertEquals(List.of(List.of(1), List.of(3, 2), List.of(4, 5, 6, 7)), ZigzagTraversal.traverse(root));
+    }
+
+    /*
+         1
+        / \
+       2   3
+      /\   /\
+     4  5 6  7
+        /  \
+       8    9
+    */
+    @Test
+    public void testZigzagTraversalDifferentHeight() {
+        final BinaryTree.Node root = TreeTestUtils.createTree(
+                new Integer[]{1, 2, 3, 4, 5, 6, 7, null, null, 8, null, null, 9});
+        assertEquals(List.of(List.of(1), List.of(3, 2), List.of(4, 5, 6, 7), List.of(9, 8)),
+                ZigzagTraversal.traverse(root));
     }
 }
